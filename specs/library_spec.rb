@@ -25,13 +25,13 @@ class TestLibrary < MiniTest::Test
      date: "20/08/17"
     }
   }])
-    assert_equal([{
+    assert_equal({
     title: "Practical Object-Oriented Design in Ruby",
     rental_details: {
      student_name: "Larry Love",
      date: "20/08/17"
     }
-  }], edinburgh_library.get_book_details("Practical Object-Oriented Design in Ruby"))
+  }, edinburgh_library.get_book_details("Practical Object-Oriented Design in Ruby"))
   end
 
   def test_get_book_rental_details
@@ -46,6 +46,23 @@ class TestLibrary < MiniTest::Test
      student_name: "Larry Love",
      date: "20/08/17"
     }, edinburgh_library.get_book_rental_details("Practical Object-Oriented Design in Ruby"))
+  end
+
+  def test_add_book_title
+    edinburgh_library = Library.new([{
+    title: "Practical Object-Oriented Design in Ruby",
+    rental_details: {
+     student_name: "Larry Love",
+     date: "20/08/17"
+    }
+  }])
+    edinburgh_library.add_book_title("Learn to program","","")
+    assert_equal({title: "Learn to program",
+    rental_details: {
+     student_name: "",
+     date: ""
+     }
+   }, edinburgh_library.get_book_details("Learn to program"))
   end
 
 end

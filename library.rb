@@ -21,12 +21,29 @@ class Library
   end
 
   def get_book_details(sought_book)
-    return @book if @book[0][:title] == sought_book
+    @book.each {|item|
+      return item if item[:title] == sought_book
+    }
   end
 
   def get_book_rental_details(sought_book)
-    return @book[0][:rental_details] if @book[0][:title] == sought_book
 
+    @book.each {|item|
+      p "SOUGHT BOOK #{item}"
+
+      return item[:rental_details] if item[:title] == sought_book
+    }
+
+  end
+
+  def add_book_title(new_title, student_name, due_date)
+    @book.push({title: new_title,
+    rental_details: {
+     student_name: student_name,
+     date: due_date
+     }
+   })
+   p @book
   end
 
 end
